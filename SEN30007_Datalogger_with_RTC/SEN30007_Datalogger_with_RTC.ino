@@ -1,13 +1,13 @@
 /***************************************************************************
 * File Name: SEN30007_Datalogger_with_RTC.ino
 * Processor/Platform: Arduino Uno R3 (tested)
-* Development Environment: Arduino 1.6.5
+* Development Environment: Arduino 1.8.3
 *
 * Designed for use with with Playing With Fusion Quad MAX31856 thermocouple
 * Arduino shield, SEN-30007 (any TC type, configurable) and micro SD shield
 * with RTC, IFB-11001. 
 *
-* Copyright © 2016 Playing With Fusion, Inc.
+* Copyright © 2016-18 Playing With Fusion, Inc.
 * SOFTWARE LICENSE AGREEMENT: This code is released under the MIT License.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a
@@ -32,6 +32,7 @@
 * Author		      Date	      Comments
 * J. Steinlage		2016May30   First revision
 * J. Steinlage    2016Sep23   Added interval control
+* J. Steinlage    2018Jul10   Remove reference to DR/FLT
 *
 * Playing With Fusion, Inc. invests time and resources developing open-source
 * code. Please support Playing With Fusion and continued open-source
@@ -94,11 +95,11 @@ uint8_t TC3_CS  =  7;
 uint8_t CS_SD   =  5;
 uint8_t CD_SD   =  6;
 
-// Thermocouple channels
-PWF_MAX31856  thermocouple0(TC0_CS, 0, 0);
-PWF_MAX31856  thermocouple1(TC1_CS, 0, 0);
-PWF_MAX31856  thermocouple2(TC2_CS, 0, 0);
-PWF_MAX31856  thermocouple3(TC3_CS, 0, 0);
+// Thermocouple channel config (pass chip select to init function)
+PWF_MAX31856  thermocouple0(TC0_CS);
+PWF_MAX31856  thermocouple1(TC1_CS);
+PWF_MAX31856  thermocouple2(TC2_CS);
+PWF_MAX31856  thermocouple3(TC3_CS);
 
 // RTC interface
 RTC_MCP79410 rtc;
